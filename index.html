@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="main">
+            <div class="game_box col-12 rounded-4 mt-5 pt-3 pb-4 px-4 d-flex flex-column row-gap-2">
+                <h3 class="text-center">Tic-Tac-toe</h3>
+                <form action="#" class="d-flex flex-column justify-content-center align-items-center row-gap-3">
+                    <div class="game col-12 d-flex flex-wrap row-gap-2 column-gap-1 justify-content-between">
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn1" onclick="onClickFunc('btn1')"></button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn2" onclick="onClickFunc('btn2')">
+                        </button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn3" onclick="onClickFunc('btn3')">
+                        </button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn4" onclick="onClickFunc('btn4')">
+                        </button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn5" onclick="onClickFunc('btn5')">
+                        </button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn6" onclick="onClickFunc('btn6')">
+                        </button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn7" onclick="onClickFunc('btn7')">
+                        </button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn8" onclick="onClickFunc('btn8')">
+                        </button>
+                        <button class="btn col-3 border-0 rounded-2 d-flex justify-content-center align-items-center"
+                            id="btn9" onclick="onClickFunc('btn9')">
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="reset_new_btns d-flex justify-content-center align-items-center column-gap-4 mt-2">
+                <button id="reset_btn" class="border-0 rounded-2 px-3 py-1" onclick="resetGame()">Reset Game</button>
+                <button id="new_btn" class="border-0 rounded-2 px-3 py-1" onclick="resetGame()">New Game</button>
+            </div>
+            <div class="hide text-center mt-2" id="text-box">
+                <h6 class="col-12" id="text">Winner</h6>
+            </div>
+        </div>
+    </div>
+    <script>
+        let count = 1;
+        let textbox = document.getElementById("text-box");
+        let text = document.getElementById("text");
+        let over = false;
+
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var btn3 = document.getElementById("btn3");
+        var btn4 = document.getElementById("btn4");
+        var btn5 = document.getElementById("btn5");
+        var btn6 = document.getElementById("btn6");
+        var btn7 = document.getElementById("btn7");
+        var btn8 = document.getElementById("btn8");
+        var btn9 = document.getElementById("btn9");
+
+        function onClickFunc(params) {
+            var ele = document.getElementById(params);
+            if (over) {
+                return;
+            }
+            if (count % 2 == 0) {
+                ele.innerText = "0";
+                ele.disabled = true;
+            } else {
+                ele.innerText = "X";
+                ele.disabled = true;
+            }
+
+            count++;
+            if (count === 10) {
+                text.innerText = "Game was a Draw.";
+                textbox.classList.remove("hide");
+            }
+            else {
+                if (btn1.innerText == "0" && btn2.innerText == "0" && btn3.innerText == "0" || btn4.innerText == "0" && btn5.innerText == "0" && btn6.innerText == "0" || btn7.innerText == "0" && btn8.innerText == "0" && btn9.innerText == "0" || btn1.innerText == "0" && btn4.innerText == "0" && btn7.innerText == "0" || btn2.innerText == "0" && btn5.innerText == "0" && btn8.innerText == "0" || btn3.innerText == "0" && btn6.innerText == "0" && btn9.innerText == "0" || btn1.innerText == "0" && btn5.innerText == "0" && btn9.innerText == "0" || btn3.innerText == "0" && btn5.innerText == "0" && btn7.innerText == "0") {
+                    text.innerText = "Winner Is O";
+                    textbox.classList.remove("hide");
+                    over = true;
+                }
+                else if (btn1.innerText == "X" && btn2.innerText == "X" && btn3.innerText == "X" || btn4.innerText == "X" && btn5.innerText == "X" && btn6.innerText == "X" || btn7.innerText == "X" && btn8.innerText == "X" && btn9.innerText == "X" || btn1.innerText == "X" && btn4.innerText == "X" && btn7.innerText == "X" || btn2.innerText == "X" && btn5.innerText == "X" && btn8.innerText == "X" || btn3.innerText == "X" && btn6.innerText == "X" && btn9.innerText == "X" || btn1.innerText == "X" && btn5.innerText == "X" && btn9.innerText == "X" || btn3.innerText == "X" && btn5.innerText == "X" && btn7.innerText == "X") {
+                    text.innerText = "Winner Is X";
+                    textbox.classList.remove("hide");
+                    over = true;
+                }
+            }
+        }
+
+        function resetGame() {
+            count = 1;
+            textbox.classList.add("hide");
+            btn1.innerText = " ";
+            btn2.innerText = " ";
+            btn3.innerText = " ";
+            btn4.innerText = " ";
+            btn5.innerText = " ";
+            btn6.innerText = " ";
+            btn7.innerText = " ";
+            btn8.innerText = " ";
+            btn9.innerText = " ";
+
+            btn1.disabled = false;
+            btn2.disabled = false;
+            btn3.disabled = false;
+            btn4.disabled = false;
+            btn5.disabled = false;
+            btn6.disabled = false;
+            btn7.disabled = false;
+            btn8.disabled = false;
+            btn9.disabled = false;
+        }
+    </script>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
